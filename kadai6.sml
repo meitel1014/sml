@@ -1,10 +1,16 @@
 use "lib.sml";
 
-fun compute s =
+fun findValue s nil = raise NotDefined
+  | findValue s ((h:(string*int))::t)=
+    if #1(h)=s then #2(h)
+    else findValue s t;
+
+fun compute s mapL =
   let
     fun EXP nil = raise SyntaxError
       | EXP (h::t) =
       if isInt h then (toInt h, t)
+      else if isAlp h then ((findValue h mapL),t)
       else if h="(" then
         if isAlp(hd t) then FUNC t
         else COMP t
