@@ -24,7 +24,6 @@ fun compute s =
         else if h="*" then (v1 * v2, t2)
         else if h="/" then (v1 div v2, t2)
         else raise SyntaxError
-
       end
   in
     let
