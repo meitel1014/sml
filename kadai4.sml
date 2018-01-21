@@ -5,12 +5,7 @@ fun compute s =
     fun EXP nil = raise SyntaxError
       | EXP (h::t) =
       if isInt h then (toInt h, t)
-      else if h="(" then OP t
-      else raise SyntaxError
-
-    and OP nil = raise SyntaxError
-      | OP (h::t) =
-      if h = "+" orelse h="-" orelse h="*" orelse h="/" then COMP (h::t)
+      else if h="(" then COMP t
       else raise SyntaxError
 
     and COMP nil = raise SyntaxError
